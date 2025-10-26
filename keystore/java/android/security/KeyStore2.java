@@ -32,7 +32,9 @@ import android.system.keystore2.KeyEntryResponse;
 import android.system.keystore2.ResponseCode;
 import android.util.Log;
 
+
 import com.android.internal.util.matrixx.KeyboxImitationHooks;
+import com.android.internal.util.matrixx.KeyboxUtils;
 
 import java.util.Calendar;
 
@@ -339,6 +341,8 @@ public class KeyStore2 {
     public void deleteKey(@NonNull KeyDescriptor descriptor)
             throws KeyStoreException {
         StrictMode.noteDiskWrite();
+
+        KeyboxUtils.remove(Binder.getCallingUid(), descriptor.alias);
 
         handleRemoteExceptionWithRetry((service) -> {
             service.deleteKey(descriptor);

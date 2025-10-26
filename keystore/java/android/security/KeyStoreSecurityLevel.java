@@ -33,7 +33,9 @@ import android.system.keystore2.KeyMetadata;
 import android.system.keystore2.ResponseCode;
 import android.util.Log;
 
+
 import com.android.internal.util.matrixx.KeyboxImitationHooks;
+import com.android.internal.util.matrixx.KeyboxUtils;
 
 import java.util.Calendar;
 import java.util.Collection;
@@ -148,7 +150,7 @@ public class KeyStoreSecurityLevel {
             throws KeyStoreException {
         StrictMode.noteDiskWrite();
 
-        KeyboxImitationHooks.setSuccessFlag(false);
+        KeyboxUtils.remove(Binder.getCallingUid(), descriptor.alias);
         if (attestationKey == null) {
             KeyMetadata metadata = KeyboxImitationHooks.generateKey(mSecurityLevel,
                     descriptor, args);
