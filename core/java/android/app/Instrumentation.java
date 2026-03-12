@@ -81,7 +81,9 @@ import java.util.StringJoiner;
 import java.util.concurrent.TimeoutException;
 
 import com.android.internal.util.matrixx.AttestationHooks;
+import com.android.internal.util.matrixx.PerAppsPropsUtils;
 import com.android.internal.util.matrixx.PixelPropsUtils;
+
 
 /**
  * Base class for implementing application instrumentation code.  When running
@@ -1364,6 +1366,7 @@ public class Instrumentation {
         app.attach(context);
         AttestationHooks.setProps(context);
         PixelPropsUtils.setProps(context);
+        PerAppsPropsUtils.setProps(context);
         return app;
     }
     
@@ -1384,6 +1387,7 @@ public class Instrumentation {
         app.attach(context);
         AttestationHooks.setProps(context);
         PixelPropsUtils.setProps(context);
+        PerAppsPropsUtils.setProps(context);
         return app;
     }
 
